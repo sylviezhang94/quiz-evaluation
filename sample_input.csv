@@ -1,0 +1,11 @@
+题目ID,级别,题型,学习模式,知识点,题干,选项1,选项2,选项3,选项4,正确答案,干扰项(逗号分隔),来源台词,选项形式,句子长度(词数),朗读内容,及格线,评分维度(逗号分隔),语境充分(Y/N),出题时机自然(Y/N),反馈有效(Y/N),备注
+Q001,A2,REVIEW_S1,native,apple,请听录音选出你听到的单词,apple,apply,ape,apex,apple,"apply,ape,apex",I ate an apple this morning,四个英文单词,0,,,,Y,Y,Y,
+Q002,B1,S2,native,colleague,视频里的 colleague 是什么意思？,同事,同学,朋友,领导,同事,"同学,朋友,领导",She is my colleague at the company,四个母语释义,0,,,,Y,Y,Y,
+Q003,B2,REVIEW_S2,english,quit,Complete the sentence,quit,start,stop,leave,quit,"start,stop,leave",I decided to quit my job,拼写填空,8,,,,Y,Y,Y,英语学英语模式
+Q004,B2,DRAG_SORT,native,affect,她昨天辞掉了工作,She,quit,her,job,yesterday,,She quit her job yesterday,拖拽排序,6,,,,Y,Y,Y,母语B2+拖拽排序
+Q005,A2,REVIEW_S3,native,hello,请跟读下面的单词,,,,,hello,,,,0,hello,75,"发音准确度,完整度",Y,Y,Y,
+Q006,C1,S5,english,look for,请将左右两列连成正确的搭配,,,,,,,,英→英,0,,,,Y,Y,Y,look for/try to find配对题
+Q007,B1,REVIEW_S1,native,job,请听录音选出中文意思,工作,旅行,学习,跑步,工作,"旅行,学习,跑步",I have a job interview tomorrow,四个母语释义,0,,,,Y,Y,Y,
+Q008,C2,S2,english,irony,What does the speaker imply?,sarcasm about the weather,genuine appreciation,concern about climate change,observation about rainfall,sarcasm about the weather,"genuine appreciation,concern about climate change,observation about rainfall","Nice weather, she said as thunder rolled in",四个近义句/隐含含义,0,,,,Y,Y,Y,
+Q009,A1,S2,native,dog,视频里的 dog 是什么意思？,狗（🐕图片）,猫（🐈图片）,兔子（🐇图片）,鱼（🐟图片）,狗（🐕图片）,"猫（🐈图片）,兔子（🐇图片）,鱼（🐟图片）",I have a dog,四张图片,0,,,,Y,Y,Y,
+Q010,A2,REVIEW_S2,native,job,选择正确的单词完成句子,plan,job,work,time,job,"plan,work,time",I have a ___ (新造的句子),四个英文单词,7,,,,Y,Y,Y,选词填空模式
