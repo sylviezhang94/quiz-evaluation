@@ -41,19 +41,36 @@
 
 **必须**先读取 `./models.py` 了解数据结构。
 
+### 步骤 2.5：查询知识点词表级别
+
+对每道题的知识点，查询 CEFR 词表获取真实级别：
+
+```python
+from vocab import check_level_match
+result = check_level_match(knowledge_point, target_level)
+# result = {'word': 'refuse', 'vocab_level': 'B1', 'offset': 1, ...}
+```
+
+- 词表数据在 `./cefr_vocab.json`（9750词，A1→C2）
+- `vocab.py` 自动处理屈折形态（refused→refuse, studying→study 等）
+- 如果词表级别 > 目标级别（offset > 0），说明知识点**超纲**，应在"级别适配度"维度扣分并标注 D-1
+
 ### 步骤 3：逐题评判
 
 对每道题，按以下流程执行 LLM 评判：
 
 1. 读取该题对应的 CEFR 规则：`from rules_engine import get_rule` → 获取 `LevelRule`
-2. 读取评判评分卡：`./rubric.py` 中的 `EVALUATION_RUBRIC`（八维度 0/1/2 标准 + 问题标签表）
-3. 构建评判 prompt，调用 LLM（即当前 agent 自身进行推理判断）给出：
+2. 将步骤 2.5 的词表结果作为 `vocab_info` 参数传入：`build_evaluation_prompt(rule_text, vocab_info)`
+3. 读取评判评分卡：`./rubric.py`（八维度 0/1/2 标准 + 问题标签表）
+4. 构建评判 prompt，调用 LLM 给出：
    - 每个维度的评分（0/1/2）+ 理由
-   - 问题标签列表
+   - 问题标签列表（含严重程度）
    - 修改建议
 
 **评判质量要求**：
-- 对于自动可判的维度（建议数、句子长度等），必须精确对照规则数值
+- 知识点级别匹配：以词表查询结果为准，超纲必标 D-1
+- 题型合规性：以 `rules_engine.py` 中的规则为准，不符必标 T-1/T-2
+- 对于自动可判的维度（选项数、句子长度等），必须精确对照规则数值
 - 对于需理解的维度（语言正确性、选项设计等），需认真分析题目内容
 - 禁止敷衍地给所有维度打 2 分或 1 分
 
@@ -68,10 +85,12 @@
 | 文件 | 用途 |
 |-|-|
 | `SKILL.md` | 本文件 |
-| `models.py` | 数据模型（Question、EvaluationResult、ProblemTag、Score 等） |
+| `models.py` | 数据模型（Question、EvaluationResult、ProblemTag 等） |
 | `rules_engine.py` | CEFR 级别×题型约束规则（从级联总表提取） |
-| `rubric.py` | LLM 评判评分卡模板（八维度标准 + 标签体系） |
-| `report.py` | 报告生成工具 |
+| `vocab.py` | CEFR 词表查询（含屈折形态变体匹配） |
+| `cefr_vocab.json` | CEFR 词汇数据库（9750 词，A1→C2，源自飞书词表） |
+| `rubric.py` | LLM 评判评分卡模板（八维度标准 + 标签体系 + prompt） |
+| `report.py` | 报告生成工具（控制台 + CSV） |
 
 ## 外部依赖
 
