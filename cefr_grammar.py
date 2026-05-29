@@ -273,6 +273,171 @@ GRAMMAR_TABLE: dict[str, dict[str, list[str]]] = {
 }
 
 # ════════════════════════════════════════════
+# 疑问句复杂度（补充）
+# ════════════════════════════════════════════
+
+QUESTION_FORMS: dict[str, dict[str, list[str]]] = {
+    "A1": {
+        "available": [
+            "Wh-疑问句: What/Where/Who/How + be (What is this?)",
+            "Yes/No 疑问句: be 提前 (Are you a student?)",
+            "or 选择疑问句: Is it A or B?",
+            "How much/many 询问数量和价格",
+        ],
+        "unavailable": [
+            "间接疑问句 (Can you tell me where...)",
+            "否定疑问句 (Don't you like it?)",
+            "疑问词 + to do (I don't know what to do)",
+            "嵌入疑问 (Do you know what time it is?)",
+        ],
+    },
+    "A2": {
+        "available": [
+            "Wh-疑问句: do/does/did 助动词 (Where do you live?)",
+            "How often/long/far 频率和程度疑问",
+            "Which 选择疑问 (Which one do you prefer?)",
+            "Whose 所有格疑问 (Whose book is this?)",
+            "间接疑问句（基本）: Can you tell me where the station is?",
+            "疑问词 + 不定式（基本）: I don't know where to go",
+        ],
+        "unavailable": [
+            "嵌套疑问 (Do you know what time the meeting starts?)",
+            "否定疑问句表示惊讶/确认",
+            "疑问尾句 (question tags)",
+        ],
+    },
+    "B1": {
+        "available": [
+            "嵌入疑问: Do you know where he lives?",
+            "疑问尾句 (You like coffee, don't you?)",
+            "否定疑问句: Don't you think it's a good idea?",
+            "间接疑问句完整使用: Could you tell me when the train arrives?",
+            "What/How about 建议疑问",
+            "Why don't we/you 建议句式",
+            "反问句（基本）: Who doesn't want to be happy?",
+        ],
+        "unavailable": [
+            "复杂嵌入疑问（含完成时/情态+完成）",
+            "修辞问句 (Who cares?)",
+        ],
+    },
+    "B2": {
+        "available": [
+            "复杂嵌入疑问: Do you have any idea when the meeting might finish?",
+            "疑问尾句: 各种时态和情态 (You've been there, haven't you?)",
+            "间接疑问中的时态后移: He asked where I was going",
+            "I was wondering if... 委婉询问",
+            "修辞问句: Who wouldn't want to succeed?",
+            "Would you mind if I... 礼貌请求",
+        ],
+        "unavailable": [
+            "多层嵌套疑问含虚拟",
+            "正式语体中的间接疑问 (I should be grateful if you would inform me...)",
+        ],
+    },
+    "C1": {
+        "available": [
+            "多层嵌套疑问: Could you clarify what you meant when you said...?",
+            "修辞问句在论述中的使用",
+            "正式间接疑问: I would be grateful if you could let me know whether...",
+            "疑问句中的强调和倒装: What exactly is it that you want?",
+            "Would it be possible for you to...? 极度委婉",
+        ],
+        "unavailable": [],
+    },
+    "C2": {
+        "available": [
+            "任意复杂度的疑问句，含多层嵌套、虚拟、倒装",
+            "可根据语境和听众自如选择疑问句的正式度和直接度",
+        ],
+        "unavailable": [],
+    },
+}
+
+# ════════════════════════════════════════════
+# 否定结构（补充）
+# ════════════════════════════════════════════
+
+NEGATION_FORMS: dict[str, dict[str, list[str]]] = {
+    "A1": {
+        "available": [
+            "be + not (I am not a student)",
+            "do/does + not (I don't like coffee)",
+            "can + not (I can't swim)",
+            "no + 名词 (no problem, no money)",
+            "祈使否定: Don't go!",
+        ],
+        "unavailable": [
+            "双重否定",
+            "部分否定 (not all, not every)",
+            "否定转移 (I don't think he is...)",
+            "倒装否定 (Never have I...)",
+        ],
+    },
+    "A2": {
+        "available": [
+            "did + not (I didn't go)",
+            "will/would + not (I won't be late)",
+            "have/has + not (I haven't seen it)",
+            "不定代词否定: nothing, nobody, nowhere",
+            "never, hardly 等否定副词（基本）",
+        ],
+        "unavailable": [
+            "否定转移",
+            "部分否定 (not everyone agrees)",
+            "Not only...but also...",
+        ],
+    },
+    "B1": {
+        "available": [
+            "否定转移: I don't think he is right (≠ I think he isn't right)",
+            "部分否定: not all, not every, not always",
+            "not...any more / any longer",
+            "not...either (I don't like it either)",
+            "without + 动名词 (without asking)",
+        ],
+        "unavailable": [
+            "倒装否定 (Never have I seen...)",
+            "Not until... / Not only... 句首倒装",
+            "否定条件句 (Unless = if not — B2 精准使用)",
+        ],
+    },
+    "B2": {
+        "available": [
+            "倒装否定: Never have I seen such a thing",
+            "Not only...but also... (Not only did he refuse, but he also...)",
+            "Not until 句首倒装: Not until I arrived did I realize...",
+            "Hardly/Scarcely...when: Hardly had I sat down when...",
+            "No sooner...than: No sooner had we left than it started raining",
+            "Neither/Nor 倒装: I don't like it. Nor does my wife.",
+            "双重否定（强调）: It's not uncommon to see...",
+        ],
+        "unavailable": [
+            "复杂否定+虚拟复合结构",
+            "文学性否定修辞",
+        ],
+    },
+    "C1": {
+        "available": [
+            "所有倒装否定结构的自如使用",
+            "否定+虚拟: Were it not for..., I would...",
+            "含蓄否定: far from, rather than, instead of",
+            "否定在学术/正式语体中的精确使用",
+            "I can't help but wonder... / There's no denying that...",
+        ],
+        "unavailable": [],
+    },
+    "C2": {
+        "available": [
+            "所有否定结构达到母语级精确度",
+            "微妙否定语义的区分 (hardly vs barely vs scarcely)",
+            "否定修辞在文学和正式语体中的自如运用",
+        ],
+        "unavailable": [],
+    },
+}
+
+# ════════════════════════════════════════════
 # 基础语言特征（每级别的量化指标）
 # ════════════════════════════════════════════
 
@@ -331,9 +496,7 @@ def build_grammar_prompt_for_level(level: str) -> str:
     """生成给 LLM 的语法参考 prompt 片段
     
     列出该级别可用的语法结构 + 超纲警告。
-    控制在合理长度内避免 prompt 过长。
     """
-    target_idx = LEVEL_ORDER.get(level, 1)
     grammar = GRAMMAR_TABLE.get(level, {})
     available = grammar.get("available", [])
     unavailable = grammar.get("unavailable", [])
@@ -346,17 +509,38 @@ def build_grammar_prompt_for_level(level: str) -> str:
         lines.append(f"**基础特征：** 单句{features.get('单句词数', '')}，{features.get('句长规律', '')}")
         lines.append("")
 
-    # 可用语法（精选不超过15条，避免prompt过长）
+    # 可用语法（精选）
     if available:
         lines.append(f"**该级别可用的语法结构（精选）：**")
-        for item in available[:15]:
+        for item in available[:12]:
             lines.append(f"  - {item}")
         lines.append("")
 
-    # 超纲语法（精选不超过10条）
-    if unavailable:
+    # 疑问句
+    qf = QUESTION_FORMS.get(level, {})
+    q_avail = qf.get("available", [])
+    if q_avail:
+        lines.append(f"**疑问句能力：**")
+        for item in q_avail[:4]:
+            lines.append(f"  - {item}")
+        lines.append("")
+
+    # 否定
+    nf = NEGATION_FORMS.get(level, {})
+    n_avail = nf.get("available", [])
+    if n_avail:
+        lines.append(f"**否定结构能力：**")
+        for item in n_avail[:4]:
+            lines.append(f"  - {item}")
+        lines.append("")
+
+    # 超纲语法（精选不超过8条）
+    all_unavailable = list(unavailable)
+    all_unavailable.extend(qf.get("unavailable", [])[:2])
+    all_unavailable.extend(nf.get("unavailable", [])[:2])
+    if all_unavailable:
         lines.append(f"**以下语法属于{level}级别超纲，出现应标 D-3（语法过难）：**")
-        for item in unavailable[:10]:
+        for item in all_unavailable[:8]:
             lines.append(f"  - {item}")
         lines.append("")
 
@@ -392,6 +576,10 @@ def check_grammar_match(question: dict, level: str) -> dict:
         "倒装句": ["not only", "never have", "rarely", "only when", "no sooner", "hardly had"],
         "第三条件句": ["would have", "could have", "might have been"],
         "分词从句": ["having finished", "walking home", "looking at"],
+        "否定转移": ["don't think", "doesn't think", "didn't think"],
+        "倒装否定": ["not until", "never have I", "nor does", "neither do"],
+        "嵌入疑问": ["do you know what", "do you know where", "can you tell me when"],
+        "疑问尾句": [", don't you", ", isn't it", ", haven't you", ", won't you"],
     }
 
     over_level = []
