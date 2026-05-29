@@ -91,12 +91,16 @@ EVALUATION_OUTPUT_FORMAT = """
 # ════════════════════════════════════════════
 # 系统 prompt 模板
 # ════════════════════════════════════════════
-def build_evaluation_prompt(rule_text: str) -> str:
+def build_evaluation_prompt(rule_text: str, vocab_info: str = "") -> str:
     """构建单题评判的完整 prompt"""
+    vocab_section = ""
+    if vocab_info:
+        vocab_section = f"\n## 知识点词表参考\n{vocab_info}\n"
+    
     return f"""你是一个英语教学题目质量评测专家。请按照以下标准评测一道题目。
 
 {rule_text}
-
+{vocab_section}
 {SCORING_RUBRIC}
 
 {build_tag_catalog()}
